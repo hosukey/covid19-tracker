@@ -1,0 +1,63 @@
+:root {
+  /* colors */
+  --main-color: #501cac;
+  --second-color: #b3e756;
+  --darkgray-color: #464646;
+  --gray-color: #6e6e6e;
+  --lightgray-color: #8e8e8e;
+  --black-color: #1b0a38;
+
+  /* font sizes */
+  --fontsize-xxl: 3.625rem;
+  --fontsize-xl: 1.25rem;
+  --fontsize-l: 1.125rem;
+  --fontsize-m: 1rem;
+  --fontsize-s: 0.937rem;
+  --fontsize-xs: 0.875rem;
+  --fontsize-xxs: 0.75rem;
+
+  /* spacing */
+  --spacing-l: 3rem;
+  --spacing-m: 2rem;
+  --spacing-s: 1rem;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+
+p {
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+ul,
+ol,
+li,
+dl,
+dt,
+dd {
+  list-style-type: none;
+  padding-left: 0;
+  margin-left: 0;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button:focus,
+button:active,
+input:focus,
+input:active {
+  outline: none;
+  box-shadow: none;
+}
+
+button {
+  border: none;
+  border-radius: 2px;
+  cursor: pointer;
+}
