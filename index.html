@@ -5,20 +5,139 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/style.css" />
-    <script src="js/app.js" defer></script>
+    <script src="practice/main.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/e8644e93da.js"
+      crossorigin="anonymous"
+    ></script>
     <title>Covid-19 Tracker</title>
   </head>
   <body>
-    <header id="left">
-      <h1>Covid<br />-19 Tracker</h1>
-      <div class="left__menu">
-        <ul class="left__links">
+    <nav id="sidebar">
+      <h1>Covid-19 Tracker</h1>
+      <div class="sidebar__menu">
+        <ul class="sidebar__links">
           <li><a href="">github</a></li>
           <li><a href="">email</a></li>
         </ul>
-        <div class="left__copyright"><span>💚</span>Made by HOSU</div>
+        <div class="sidebar__copyright"><span>💚</span>Made by HOSU</div>
       </div>
-    </header>
-    <main id="container"></main>
+    </nav>
+    <main id="container">
+      <section class="global">
+        <div class="global__title title">Global Statistics</div>
+        <div class="global__items items">
+          <div class="global__items--item">
+            <span class="line"></span>
+            <ul class="cases item">
+              <li>Cases</li>
+              <li>252,456,789</li>
+            </ul>
+          </div>
+          <div class="global__items--item">
+            <span class="line"></span>
+            <ul class="deaths item">
+              <li>deaths</li>
+              <li>5,086,789</li>
+            </ul>
+          </div>
+        </div>
+        <div class="global__updated updated">
+          Last updated Nov 11, 2021 10:30
+        </div>
+      </section>
+
+      <section class="canada">
+        <div class="canada__title title">Canada Statistics</div>
+        <div class="canada__items items">
+          <div class="canada__items--item">
+            <span class="line"></span>
+            <ul class="cases item">
+              <li>Cases</li>
+              <li>252,456,789</li>
+            </ul>
+          </div>
+
+          <div class="canada__items--item">
+            <span class="line"></span>
+            <ul class="deaths item">
+              <li>deaths</li>
+              <li>5,086,789</li>
+            </ul>
+          </div>
+
+          <div class="canada__items--item">
+            <span class="line"></span>
+            <ul class="recovered item">
+              <li>recovered</li>
+              <li>5,086,789</li>
+            </ul>
+          </div>
+        </div>
+        <div class="canada__updated updated">
+          Last updated Nov 11, 2021 10:30
+        </div>
+      </section>
+
+      <section class="province">
+        <div class="province__title title">Provinces</div>
+        <div class="province__dropdownContainer">
+          <select name="pronvinces" class="prov-dropdown">
+            <option value="bc">British Columbia</option>
+            <option value="ab">Alberta</option>
+            <option value="sk">Saskatchewan</option>
+            <option value="mb">Manitoba</option>
+            <option value="on">Ontario</option>
+            <option value="qc">Quebec</option>
+            <option value="nb">New Brunswick</option>
+            <option value="ns">Nova Scotia</option>
+            <option value="pei">Prince Edward Island</option>
+            <option value="nl">Newfoundland and Labrador</option>
+          </select>
+        </div>
+
+        <div class="province__name">British Columbia</div>
+        <div class="province__items items">
+          <div class="province__items--item">
+            <span class="line"></span>
+            <ul class="cases item">
+              <li>Cases</li>
+              <li>252,456,789</li>
+            </ul>
+          </div>
+
+          <div class="province__items--item">
+            <span class="line"></span>
+            <ul class="deaths item">
+              <li>deaths</li>
+              <li>5,086,789</li>
+            </ul>
+          </div>
+
+          <div class="province__items--item">
+            <span class="line"></span>
+            <ul class="recovered item">
+              <li>recovered</li>
+              <li>5,086,789</li>
+            </ul>
+          </div>
+
+          <div class="province__items--item">
+            <span class="line"></span>
+            <ul class="vaccinated item">
+              <li>vaccinated *</li>
+              <li>5,086,789<span> (80%)</span></li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="province__updated updated">
+          Last updated Nov 11, 2021 10:30
+        </div>
+        <div class="province__appendix appendix">
+          * Vaccination completion of second dose
+        </div>
+      </section>
+    </main>
   </body>
 </html>

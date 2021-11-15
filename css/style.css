@@ -7,51 +7,59 @@
 
 /*
 /////////////////////////////
-left-side
+Display
 /////////////////////////////
 */
 
-/* left display */
-#left {
-  width: 280px;
+body {
+  display: flex;
+}
+
+/*
+/////////////////////////////
+Sidebar
+/////////////////////////////
+*/
+
+/* sidebar */
+#sidebar {
+  position: fixed;
+  width: 20rem;
   height: 100vh;
   background-color: var(--second-color);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  padding: 2rem;
 }
 
-/* h1 */
-
-#left h1 {
-  padding: 2rem 1rem;
+#sidebar h1 {
   font-size: var(--fontsize-xxl);
   color: var(--main-color);
   letter-spacing: -0.1rem;
   line-height: 3.7rem;
 }
 
-/* left menu */
-.left__menu {
+.sidebar__menu {
   text-align: right;
   margin-right: var(--spacing-m);
 }
 
-.left__links {
+.sidebar__links {
   color: var(--main-color);
   font-size: var(--fontsize-xl);
   font-weight: 700;
 }
 
-.left__links li {
+.sidebar__links li {
   margin-top: var(--spacing-s);
 }
 
-.left__links li:nth-child(2) {
+.sidebar__links li:nth-child(2) {
   margin-bottom: var(--spacing-l);
 }
 
-.left__copyright {
+.sidebar__copyright {
   color: var(--main-color);
   font-size: var(--fontsize-s);
   font-weight: 600;
@@ -63,3 +71,108 @@ left-side
 main
 /////////////////////////////
 */
+section {
+  margin-bottom: var(--spacing-l);
+}
+
+#container {
+  position: relative;
+  padding-left: var(--spacing-l);
+  height: 100vh;
+  padding: var(--spacing-l);
+  margin-left: 20rem;
+}
+
+/* global stat */
+.title {
+  color: var(--black-color);
+  font-weight: 600;
+  font-size: var(--fontsize-xl);
+}
+
+.line {
+  min-height: 50px;
+  width: 3px;
+  background-color: var(--second-color);
+  margin-right: var(--spacing-s);
+}
+.item li:first-child {
+  text-transform: uppercase;
+  color: var(--gray-color);
+  font-size: var(--fontsize-xs);
+}
+
+.item li:nth-child(2) {
+  color: var(--main-color);
+  font-weight: 600;
+}
+
+.global__items--item {
+  display: flex;
+  padding-right: 50px;
+}
+
+.items {
+  display: grid;
+  margin-top: var(--spacing-s);
+  grid-template-columns: repeat(4, 1fr);
+  grid-gap: var(--spacing-s);
+  grid-auto-rows: minmax(3.4rem, auto);
+}
+
+.updated {
+  font-weight: 300;
+  font-size: var(--fontsize-xs);
+  color: var(--gray-color);
+  margin-top: var(--spacing-s);
+}
+
+.canada__items--item {
+  display: flex;
+  align-items: center;
+}
+
+/* province stat */
+
+/* select */
+.prov-dropdown {
+  /* removing dropdown button */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+  outline: 0;
+  /* dropdown styling */
+  overflow: hidden;
+  overflow: -moz - hidden - unscrollable;
+  cursor: pointer;
+  width: 16rem;
+  height: 2.8rem;
+  border-radius: 0.6rem;
+  border-color: var(--main-color);
+  font-weight: 500;
+  padding: 0rem 1rem;
+  color: var(--main-color);
+  margin: var(--spacing-s) 0;
+}
+
+.province__items--item {
+  display: flex;
+  align-items: center;
+}
+
+.appendix {
+  font-weight: 300;
+  font-size: var(--fontsize-xs);
+  color: var(--gray-color);
+}
+
+.province__name {
+  margin-top: var(--spacing-s);
+  font-weight: 600;
+  color: var(--darkgray-color);
+  font-size: var(--fontsize-m);
+}
+
+.vaccinated:nth-child(2) span {
+  color: var(--darkgray-color);
+}

@@ -9,12 +9,12 @@
 
   /* font sizes */
   --fontsize-xxl: 3.625rem;
-  --fontsize-xl: 1.25rem;
-  --fontsize-l: 1.125rem;
-  --fontsize-m: 1rem;
-  --fontsize-s: 0.937rem;
-  --fontsize-xs: 0.875rem;
-  --fontsize-xxs: 0.75rem;
+  --fontsize-xl: 1.5rem;
+  --fontsize-l: 1.25rem;
+  --fontsize-m: 1.125rem;
+  --fontsize-s: 1rem;
+  --fontsize-xs: 0.9375rem;
+  --fontsize-xxs: 0.875rem;
 
   /* spacing */
   --spacing-l: 3rem;
