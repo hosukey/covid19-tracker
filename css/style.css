@@ -42,7 +42,6 @@ Sidebar
 
 .sidebar__menu {
   text-align: right;
-  margin-right: var(--spacing-m);
 }
 
 .sidebar__links {
@@ -77,9 +76,8 @@ section {
 
 #container {
   position: relative;
-  padding-left: var(--spacing-l);
   height: 100vh;
-  padding: var(--spacing-l);
+  padding: var(--spacing-xl);
   margin-left: 20rem;
 }
 
@@ -93,7 +91,7 @@ section {
 
 .line {
   min-height: 50px;
-  width: 3px;
+  min-width: 4px;
   background-color: var(--second-color);
   margin-right: var(--spacing-s);
 }
@@ -106,19 +104,30 @@ section {
 .item li:nth-child(2) {
   color: var(--main-color);
   font-weight: 600;
+  font-size: var(--fontsize-xl);
 }
 
 .global__items--item {
   display: flex;
-  padding-right: 50px;
+  align-items: center;
+  margin-top: var(--spacing-s);
 }
 
 .items {
-  display: grid;
+  /* display: grid; */
+  /* grid-template-columns: repeat(4, 1fr); */
+  /* grid-auto-rows: minmax(3.4rem, auto); */
+  /* grid-template-columns: 1fr 1fr 1fr;
+  grid-auto-rows: 5rem auto; */
+  display: flex;
+  justify-content: left;
   margin-top: var(--spacing-s);
-  grid-template-columns: repeat(4, 1fr);
-  grid-gap: var(--spacing-s);
-  grid-auto-rows: minmax(3.4rem, auto);
+  flex-wrap: wrap;
+  /* background-color: thistle; */
+}
+
+.item {
+  margin-right: var(--spacing-l);
 }
 
 .updated {
@@ -131,6 +140,7 @@ section {
 .canada__items--item {
   display: flex;
   align-items: center;
+  margin-top: var(--spacing-s);
 }
 
 /* province stat */
@@ -188,6 +198,7 @@ select,
 .province__items--item {
   display: flex;
   align-items: center;
+  margin-top: var(--spacing-s);
 }
 
 .appendix {
@@ -209,4 +220,15 @@ select,
 
 .province__appendix {
   padding-bottom: var(--spacing-xxl);
+}
+
+/* Media Queries */
+@media only screen and (max-width: 1200px) {
+  flex-wrap: wrap;
+}
+
+@media only screen and (max-width: 768px) {
+}
+
+@media only screen and (max-width: 560px) {
 }
