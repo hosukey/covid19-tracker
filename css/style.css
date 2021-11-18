@@ -62,7 +62,7 @@ Sidebar
   color: var(--main-color);
   font-size: var(--fontsize-s);
   font-weight: 600;
-  margin-bottom: var(--spacing-m);
+  margin-bottom: var(--spacing-xs);
 }
 
 /*
