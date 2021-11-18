@@ -72,7 +72,7 @@ main
 /////////////////////////////
 */
 section {
-  margin-bottom: var(--spacing-l);
+  margin-bottom: var(--spacing-xxl);
 }
 
 #container {
@@ -88,6 +88,7 @@ section {
   color: var(--black-color);
   font-weight: 600;
   font-size: var(--fontsize-xl);
+  margin-bottom: var(--spacing-s);
 }
 
 .line {
@@ -135,24 +136,53 @@ section {
 /* province stat */
 
 /* select */
-.prov-dropdown {
+select {
   /* removing dropdown button */
-  -webkit-appearance: none;
-  -moz-appearance: none;
   appearance: none;
-  outline: 0;
+  background-color: transparent;
+  border: none;
+  font-size: inherit;
+  line-height: inherit;
+  color: inherit;
+  font-weight: inherit;
+  cursor: pointer;
+}
+
+select:focus {
+  outline: none;
+}
+
+.province__dropdownContainer {
   /* dropdown styling */
   overflow: hidden;
   overflow: -moz - hidden - unscrollable;
-  cursor: pointer;
-  width: 16rem;
+  width: 18rem;
   height: 2.8rem;
+  border: 2px solid var(--main-color);
   border-radius: 0.6rem;
   border-color: var(--main-color);
+  font-size: var(--fontsize-xs);
   font-weight: 500;
-  padding: 0rem 1rem;
   color: var(--main-color);
-  margin: var(--spacing-s) 0;
+  margin: 0 0 var(--spacing-m) 0;
+  display: grid;
+  grid-template-areas: 'select';
+  align-items: center;
+  padding: 0.25rem 0.5rem;
+}
+
+select,
+.province__dropdownContainer:after {
+  grid-area: select;
+}
+
+.province__dropdownContainer::after {
+  content: '';
+  width: 0.8rem;
+  height: 0.5rem;
+  background-color: var(--main-color);
+  clip-path: polygon(100% 0%, 0 0%, 50% 100%);
+  justify-self: end;
 }
 
 .province__items--item {
@@ -175,4 +205,8 @@ section {
 
 .vaccinated:nth-child(2) span {
   color: var(--darkgray-color);
+}
+
+.province__appendix {
+  padding-bottom: var(--spacing-xxl);
 }

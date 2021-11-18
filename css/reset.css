@@ -17,6 +17,8 @@
   --fontsize-xxs: 0.875rem;
 
   /* spacing */
+  --spacing-xxl: 5rem;
+  --spacing-xl: 4rem;
   --spacing-l: 3rem;
   --spacing-m: 2rem;
   --spacing-s: 1rem;
