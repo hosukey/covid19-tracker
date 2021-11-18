@@ -108,6 +108,8 @@ const getGlobalData = function (data) {
 const getCanadaData = function (data) {
   canadaCases.textContent = `${numberWithCommas(data.cases)}`;
   canadaDeaths.textContent = `${numberWithCommas(data.deaths)}`;
+  canadaRecovered.textContent = `${numberWithCommas(data.recovered)}`;
+
   canadaUpdate.textContent = timeCalculation(data);
 };
 
