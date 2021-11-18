@@ -1,7 +1,5 @@
 'use strict';
 
-// --calculate percentage vaccinated = (vaccinated/popultion) * 100
-
 // variables
 const globalCases = document.querySelector('.global .cases li:nth-child(2)');
 const globalDeaths = document.querySelector('.global .deaths li:nth-child(2)');
@@ -28,10 +26,13 @@ const months = [
   'Nov',
   'Dec',
 ];
-
 const selectProvinceBtn = document.querySelector('.prov-dropdown');
-
+const fetchProvinceSummary = fetch('https://api.opencovid.ca/summary');
+const fetchProvincePopulation = fetch(
+  'https://api.opencovid.ca/other?stat=prov'
+);
 let provinceData = {};
+let populationData = {};
 
 // api
 const globalRequest = function () {
@@ -54,20 +55,32 @@ const canadaRequest = function () {
     });
 };
 
-const provinceRequest = function () {
-  fetch('https://api.opencovid.ca/summary')
-    .then((response) => response.json())
-    .then((data) => {
-      console.log('province', data);
-      provinceData = data;
-      getProvinceData(data);
-      selectProvinceBtn.addEventListener('change', getProvinceData);
-      dateCalculation(data);
-    });
-};
+// const provinceRequest = function () {
+//   fetch('https://api.opencovid.ca/summary')
+//     .then((response) => response.json())
+//     .then((data) => {
+//       console.log('province', data);
+//       provinceData = data;
+//       getProvinceData(data);
+//       selectProvinceBtn.addEventListener('change', getProvinceData);
+//       dateCalculation(data);
+//     });
+// };
+
+Promise.all([fetchProvinceSummary, fetchProvincePopulation])
+  .then((values) => {
+    return Promise.all(values.map((r) => r.json()));
+  })
+  .then(([summary, population]) => {
+    console.log(summary);
+    console.log(population);
+    provinceData = summary;
+    populationData = population;
+    getProvinceData(summary);
+    selectProvinceBtn.addEventListener('change', getProvinceData);
+  });
 
 // functions
-
 // calculating time updated - global & canada
 const timeCalculation = function (data) {
   const time = new Date(data.updated);
@@ -79,14 +92,6 @@ const timeCalculation = function (data) {
   //   console.log(year, month, day, hour, mins);
   const convertingMonth = months[month];
   return `Last updated ${convertingMonth} ${day}, ${year} ${hour}:${mins}`;
-};
-
-// calculation date updated for provinces
-const dateCalculation = function (data) {
-  const time = provinceData.summary[dataSetNumber].date.split('-');
-  const [day, month, year] = time;
-  const convertingMonth = months[month - 1];
-  return `Last updated ${convertingMonth} ${day}, ${year}`;
 };
 
 // adding commas to the number (thousands)
@@ -109,6 +114,13 @@ const getCanadaData = function (data) {
 const getProvinceData = function (data) {
   const dataResult = selectProvinceBtn[selectProvinceBtn.selectedIndex];
   const dataSetNumber = dataResult.dataset.number;
+  const dataSetPop = dataResult.dataset.pop;
+  let vacPercentage = (
+    (provinceData.summary[dataSetNumber].cumulative_cvaccine /
+      populationData.prov[dataSetPop].pop) *
+    100
+  ).toFixed(0);
+
   provinceDataContainer.textContent = '';
 
   const dateCalculation = function (data) {
@@ -120,7 +132,7 @@ const getProvinceData = function (data) {
 
   const html = `
   <div class="province__name">${
-    provinceData.summary[dataSetNumber].province
+    populationData.prov[dataSetPop].province_full
   }</div>
   <div class="province__items items">
     <div class="province__items--item">
@@ -159,7 +171,7 @@ const getProvinceData = function (data) {
         <li>vaccinated *</li>
         <li>${numberWithCommas(
           provinceData.summary[dataSetNumber].cumulative_cvaccine
-        )}<span> (80%)</span></li>
+        )}<span> (${vacPercentage}%)</span></li>
       </ul>
     </div>
   </div>
@@ -168,7 +180,5 @@ const getProvinceData = function (data) {
   provinceUpdate.textContent = dateCalculation(data);
 };
 
-// handler
 globalRequest();
 canadaRequest();
-provinceRequest();
