@@ -1,6 +1,6 @@
 'use strict';
 
-// variables
+// variables ----------------
 const globalCases = document.querySelector('.global .cases li:nth-child(2)');
 const globalDeaths = document.querySelector('.global .deaths li:nth-child(2)');
 const globalUpdate = document.querySelector('.global__updated');
@@ -34,12 +34,12 @@ const fetchProvincePopulation = fetch(
 let provinceData = {};
 let populationData = {};
 
-// api
+// API ----------------
 const globalRequest = function () {
   fetch('https://disease.sh/v3/covid-19/all')
     .then((response) => response.json())
     .then((data) => {
-      console.log('global', data);
+      // console.log('global', data);
       timeCalculation(data);
       getGlobalData(data);
     });
@@ -49,11 +49,14 @@ const canadaRequest = function () {
   fetch('https://disease.sh/v3/covid-19/countries/Canada?strict=true')
     .then((response) => response.json())
     .then((data) => {
-      console.log('canada', data);
+      // console.log('canada', data);
       timeCalculation(data);
       getCanadaData(data);
     });
 };
+
+globalRequest();
+canadaRequest();
 
 // const provinceRequest = function () {
 //   fetch('https://api.opencovid.ca/summary')
@@ -67,21 +70,24 @@ const canadaRequest = function () {
 //     });
 // };
 
+//fetch province summary data & province population data
 Promise.all([fetchProvinceSummary, fetchProvincePopulation])
+  // destructuring
   .then((values) => {
     return Promise.all(values.map((r) => r.json()));
   })
   .then(([summary, population]) => {
-    console.log(summary);
-    console.log(population);
+    // console.log(summary);
+    // console.log(population);
+    // save data to a variable
     provinceData = summary;
     populationData = population;
     getProvinceData(summary);
     selectProvinceBtn.addEventListener('change', getProvinceData);
   });
 
-// functions
-// calculating time updated - global & canada
+// functions ----------------
+// calculating last time updated - global & canada
 const timeCalculation = function (data) {
   const time = new Date(data.updated);
   const year = time.getFullYear();
@@ -94,17 +100,19 @@ const timeCalculation = function (data) {
   return `Last updated ${convertingMonth} ${day}, ${year} ${hour}:${mins}`;
 };
 
-// adding commas to the number (thousands)
+// adding commas to the numbers (thousands)
 const numberWithCommas = function (number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
+// update global data
 const getGlobalData = function (data) {
   globalCases.textContent = `${numberWithCommas(data.cases)}`;
   globalDeaths.textContent = `${numberWithCommas(data.deaths)}`;
   globalUpdate.textContent = timeCalculation(data);
 };
 
+// update canada data
 const getCanadaData = function (data) {
   canadaCases.textContent = `${numberWithCommas(data.cases)}`;
   canadaDeaths.textContent = `${numberWithCommas(data.deaths)}`;
@@ -113,10 +121,12 @@ const getCanadaData = function (data) {
   canadaUpdate.textContent = timeCalculation(data);
 };
 
+// update province data
 const getProvinceData = function (data) {
   const dataResult = selectProvinceBtn[selectProvinceBtn.selectedIndex];
   const dataSetNumber = dataResult.dataset.number;
   const dataSetPop = dataResult.dataset.pop;
+  //vaccine percentage calculation
   let vacPercentage = (
     (provinceData.summary[dataSetNumber].cumulative_cvaccine /
       populationData.prov[dataSetPop].pop) *
@@ -181,6 +191,3 @@ const getProvinceData = function (data) {
   provinceDataContainer.insertAdjacentHTML('beforeend', html);
   provinceUpdate.textContent = dateCalculation(data);
 };
-
-globalRequest();
-canadaRequest();

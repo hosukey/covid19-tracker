@@ -144,8 +144,6 @@ section {
 }
 
 /* province stat */
-
-/* select */
 select {
   /* removing dropdown button */
   appearance: none;
@@ -222,7 +220,11 @@ select,
   padding-bottom: var(--spacing-xxl);
 }
 
-/* Media Queries */
+/*
+/////////////////////////////
+Media Queries
+/////////////////////////////
+*/
 
 @media only screen and (max-width: 560px) {
   body {
