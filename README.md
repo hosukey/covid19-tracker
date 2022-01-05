@@ -2,7 +2,7 @@
 
 ### Introduction
 Canada COVID-19 tracker made of html, css, javascript and data from APIs <br>
-[Click here for live demo](https://hosukey.github.io/covid19_tracker/)
+[Click here for live demo](https://hosukey.github.io/covid19-tracker/)
 
 ### API used
 - [COVID-19 Canada Open Data Working Group](https://opencovid.ca/)<br>
@@ -14,4 +14,4 @@ Canada COVID-19 tracker made of html, css, javascript and data from APIs <br>
 ![screenshot](https://github.com/hosukey/covid19-tracker/blob/main/images/desktop.png)
 
 *Mobile view* <br>
-<img src="https://github.com/hosukey/covid19_tracker/blob/main/images/mobile.png" width = "30%">
+<img src="https://github.com/hosukey/covid19-tracker/blob/main/images/mobile.png" width = "30%">
