@@ -11,7 +11,7 @@ Canada COVID-19 tracker made of html, css, javascript and data from APIs <br>
 
 ### images
 *Desktop view*
-![screenshot](https://github.com/hosukey/covid19_tracker/blob/main/images/desktop.png)
+![screenshot](https://github.com/hosukey/covid19-tracker/blob/main/images/desktop.png)
 
 *Mobile view* <br>
 <img src="https://github.com/hosukey/covid19_tracker/blob/main/images/mobile.png" width = "30%">
