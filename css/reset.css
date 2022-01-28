@@ -9,7 +9,7 @@
 
   /* font sizes */
   --fontsize-xxl: 3.625rem;
-  --fontsize-xl: 1.5rem;
+  --fontsize-xl: clamp(1.2rem, 4vw, 2rem);
   --fontsize-l: 1.25rem;
   --fontsize-m: 1.125rem;
   --fontsize-s: 1rem;

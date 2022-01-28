@@ -212,7 +212,7 @@ const getProvinceData = function (data) {
         )} 
         <span class="changes ${
           provinceData.summary[dataSetNumber].cumulative_recovered > 0
-            ? 'positive'
+            ? 'recovered-changes'
             : 'negative'
         }">${numberWithCommas(
     provinceData.summary[dataSetNumber].recovered
