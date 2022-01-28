@@ -249,3 +249,8 @@ Media Queries
     margin-left: 0;
   }
 }
+
+.changes {
+  color: black;
+  font-size: 14px;
+}

@@ -46,29 +46,17 @@ const globalRequest = function () {
 };
 
 const canadaRequest = function () {
-  fetch('https://disease.sh/v3/covid-19/countries/Canada?strict=true')
+  fetch('https://api.opencovid.ca/')
     .then((response) => response.json())
     .then((data) => {
       // console.log('canada', data);
-      timeCalculation(data);
+      timeCalcCanada(data);
       getCanadaData(data);
     });
 };
 
 globalRequest();
 canadaRequest();
-
-// const provinceRequest = function () {
-//   fetch('https://api.opencovid.ca/summary')
-//     .then((response) => response.json())
-//     .then((data) => {
-//       console.log('province', data);
-//       provinceData = data;
-//       getProvinceData(data);
-//       selectProvinceBtn.addEventListener('change', getProvinceData);
-//       dateCalculation(data);
-//     });
-// };
 
 //fetch province summary data & province population data
 Promise.all([fetchProvinceSummary, fetchProvincePopulation])
@@ -87,7 +75,7 @@ Promise.all([fetchProvinceSummary, fetchProvincePopulation])
   });
 
 // functions ----------------
-// calculating last time updated - global & canada
+// calculating last time updated - global
 const timeCalculation = function (data) {
   const time = new Date(data.updated);
   const year = time.getFullYear();
@@ -100,6 +88,18 @@ const timeCalculation = function (data) {
   return `Last updated ${convertingMonth} ${day}, ${year} ${hour}:${mins}`;
 };
 
+//calculating last time updated - canada
+const timeCalcCanada = function (data) {
+  const time = new Date(data.version);
+  const year = time.getFullYear();
+  const month = time.getMonth();
+  const day = time.getDate();
+  const hour = time.getHours();
+  const mins = time.getMinutes();
+  const convertingMonth = months[month];
+  return `Last updated ${convertingMonth} ${day}, ${year} ${hour}:${mins}`;
+};
+
 // adding commas to the numbers (thousands)
 const numberWithCommas = function (number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -107,18 +107,31 @@ const numberWithCommas = function (number) {
 
 // update global data
 const getGlobalData = function (data) {
-  globalCases.textContent = `${numberWithCommas(data.cases)}`;
-  globalDeaths.textContent = `${numberWithCommas(data.deaths)}`;
+  globalCases.innerHTML = `${numberWithCommas(
+    data.cases
+  )} <span class="changes">${numberWithCommas(data.todayCases)}</span>`;
+  globalDeaths.innerHTML = `${numberWithCommas(data.deaths)}
+  <span class="changes">${numberWithCommas(data.todayDeaths)}</span>
+  `;
   globalUpdate.textContent = timeCalculation(data);
 };
 
 // update canada data
 const getCanadaData = function (data) {
-  canadaCases.textContent = `${numberWithCommas(data.cases)}`;
-  canadaDeaths.textContent = `${numberWithCommas(data.deaths)}`;
-  canadaRecovered.textContent = `${numberWithCommas(data.recovered)}`;
-
-  canadaUpdate.textContent = timeCalculation(data);
+  canadaCases.innerHTML = `${numberWithCommas(data.summary[0].cumulative_cases)}
+  <span class="changes">${numberWithCommas(data.summary[0].cases)}</span>
+  `;
+  canadaDeaths.innerHTML = `${numberWithCommas(
+    data.summary[0].cumulative_deaths
+  )}
+  <span class="changes">${numberWithCommas(data.summary[0].deaths)}</span>
+  `;
+  canadaRecovered.innerHTML = `${numberWithCommas(
+    data.summary[0].cumulative_recovered
+  )}
+  <span class="changes">${numberWithCommas(data.summary[0].recovered)}</span>
+  `;
+  canadaUpdate.textContent = timeCalcCanada(data);
 };
 
 // update province data
@@ -153,7 +166,9 @@ const getProvinceData = function (data) {
         <li>Cases</li>
         <li>${numberWithCommas(
           provinceData.summary[dataSetNumber].cumulative_cases
-        )}</li>
+        )} <span class="changes">${numberWithCommas(
+    Math.abs(provinceData.summary[dataSetNumber].active_cases_change)
+  )}</span></li>
       </ul>
     </div>
 
@@ -163,7 +178,11 @@ const getProvinceData = function (data) {
         <li>deaths</li>
         <li>${numberWithCommas(
           provinceData.summary[dataSetNumber].cumulative_deaths
-        )}</li>
+        )}
+        <span class="changes">${numberWithCommas(
+          provinceData.summary[dataSetNumber].deaths
+        )}</span>
+        </li>
       </ul>
     </div>
 
@@ -173,7 +192,12 @@ const getProvinceData = function (data) {
         <li>recovered</li>
         <li>${numberWithCommas(
           provinceData.summary[dataSetNumber].cumulative_recovered
-        )}</li>
+        )} 
+        <span class="changes">${numberWithCommas(
+          provinceData.summary[dataSetNumber].recovered
+        )}</span>
+        </li>
+    
       </ul>
     </div>
 
@@ -191,3 +215,5 @@ const getProvinceData = function (data) {
   provinceDataContainer.insertAdjacentHTML('beforeend', html);
   provinceUpdate.textContent = dateCalculation(data);
 };
+
+// UI Styling
