@@ -254,3 +254,19 @@ Media Queries
   color: black;
   font-size: 14px;
 }
+
+.positive {
+  color: rgb(230, 24, 75);
+}
+
+.positive::after {
+  content: '⬆';
+}
+
+.recovered-changes {
+  color: rgb(10, 77, 10);
+}
+
+.recovered-changes::after {
+  content: '⬆';
+}
