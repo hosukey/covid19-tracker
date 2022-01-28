@@ -270,7 +270,7 @@ Media Queries
 }
 
 .positive::after {
-  content: '⬆';
+  content: ' \2B06';
 }
 
 .negative {
@@ -278,7 +278,7 @@ Media Queries
 }
 
 .negative::after {
-  content: '⬇';
+  content: ' \2B07';
 }
 
 .recovered-changes {
@@ -286,5 +286,5 @@ Media Queries
 }
 
 .recovered-changes::after {
-  content: '⬆';
+  content: ' \2B06';
 }
