@@ -286,5 +286,5 @@ Media Queries
 }
 
 .recovered-changes::after {
-  content: '\2B06';
+  content: ' \2B06';
 }
