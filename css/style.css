@@ -243,7 +243,7 @@ Media Queries
   #sidebar {
     position: sticky;
     width: 100%;
-    height: 30vh;
+    height: 10vh;
     background-color: var(--second-color);
     display: flex;
     flex-direction: column;
@@ -259,10 +259,24 @@ Media Queries
   }
 }
 
+@media only screen and (max-width: 499px) {
+  #sidebar h1 {
+    font-size: var(--fontsize-xxl);
+    line-height: 1;
+  }
+  .sidebar__copyright {
+    display: none;
+  }
+
+  .sidebar__links li:nth-child(2) {
+    margin-bottom: 0;
+  }
+}
+
 /* changes style */
 .changes {
   color: black;
-  font-size: clamp(0.7rem, 3vw, 1.1rem);
+  font-size: clamp(0.9rem, 3vw, 1.1rem);
 }
 
 .positive {

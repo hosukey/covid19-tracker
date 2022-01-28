@@ -8,7 +8,7 @@
   --black-color: #1b0a38;
 
   /* font sizes */
-  --fontsize-xxl: 3.625rem;
+  --fontsize-xxl: clamp(2.2rem, 3vw, 3.625rem);
   --fontsize-xl: clamp(1.2rem, 3vw, 1.8rem);
   --fontsize-l: clamp(1.1rem, 1.4vw, 1.2rem);
   --fontsize-m: 1.125rem;
