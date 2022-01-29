@@ -46,7 +46,7 @@ Sidebar
 
 .sidebar__links {
   color: var(--main-color);
-  font-size: var(--fontsize-l);
+  font-size: clamp(1.1rem, 1.4vw, 1.2rem);
   font-weight: 700;
   margin-top: 2rem;
 }
