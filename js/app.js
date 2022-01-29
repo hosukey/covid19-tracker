@@ -48,7 +48,7 @@ const canadaRequest = function () {
   fetch('https://api.opencovid.ca/')
     .then((response) => response.json())
     .then((data) => {
-      // console.log('canada', data);
+      console.log('canada', data);
       getCanadaData(data);
     });
 };
@@ -89,7 +89,10 @@ const timeCalculation = function (data) {
 
 //calculating last time updated - canada
 const timeCalcCanada = function (data) {
-  const time = new Date(data.version);
+  // replace - to / to make it work on ios (2022-01-28 format gives you error NaN on mobile )
+  const t = data.version.replace(/-/g, '/');
+
+  const time = new Date(t);
   const year = time.getFullYear();
   const month = time.getMonth();
   const day = time.getDate();
