@@ -49,7 +49,6 @@ const canadaRequest = function () {
     .then((response) => response.json())
     .then((data) => {
       // console.log('canada', data);
-      timeCalcCanada(data);
       getCanadaData(data);
     });
 };
