@@ -40,7 +40,6 @@ const globalRequest = function () {
     .then((response) => response.json())
     .then((data) => {
       // console.log('global', data);
-      timeCalculation(data);
       getGlobalData(data);
     });
 };
@@ -84,7 +83,7 @@ const timeCalculation = function (data) {
   const day = time.getDate();
   const hour = time.getHours();
   const mins = time.getMinutes();
-  //   console.log(year, month, day, hour, mins);
+  // console.log(year, month, day, hour, mins);
   const convertingMonth = months[month];
   return `Last updated ${convertingMonth} ${day}, ${year} ${hour}:${mins}`;
 };
