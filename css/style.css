@@ -284,7 +284,9 @@ Media Queries
 }
 
 .positive::after {
-  content: ' \2B06';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: ' \f062';
 }
 
 .negative {
@@ -292,7 +294,9 @@ Media Queries
 }
 
 .negative::after {
-  content: ' \2B07';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: ' \f063';
 }
 
 .recovered-changes {
@@ -300,5 +304,7 @@ Media Queries
 }
 
 .recovered-changes::after {
-  content: ' \2B06';
+  font-family: 'Font Awesome 5 Free';
+  font-weight: 900;
+  content: ' \f062';
 }
