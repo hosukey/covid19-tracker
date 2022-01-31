@@ -107,17 +107,38 @@ const numberWithCommas = function (number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 };
 
+// adding arrow classes
+const addArrow = function (data) {
+  if (data === 0) {
+    return 'zero';
+  } else if (data >= 0) {
+    return 'positive';
+  } else {
+    return 'negative';
+  }
+};
+
+const addArrowRecovered = function (data) {
+  if (data === 0) {
+    return 'zero';
+  } else if (data >= 0) {
+    return 'recovered-changes';
+  } else {
+    return 'negative';
+  }
+};
+
 // update global data
 const getGlobalData = function (data) {
   globalCases.innerHTML = `${numberWithCommas(
     data.cases
-  )} <span class="changes ${
-    data.todayCases > 0 ? 'positive' : 'negative'
-  }">${numberWithCommas(data.todayCases)}</span>`;
+  )} <span class="changes ${addArrow(data.todayCases)}">${numberWithCommas(
+    data.todayCases
+  )}</span>`;
   globalDeaths.innerHTML = `${numberWithCommas(data.deaths)}
-  <span class="changes ${
-    data.todayDeaths > 0 ? 'positive' : 'negative'
-  }">${numberWithCommas(data.todayDeaths)}</span>
+  <span class="changes ${addArrow(data.todayDeaths)}">${numberWithCommas(
+    data.todayDeaths
+  )}</span>
   `;
   globalUpdate.textContent = timeCalculation(data);
 };
@@ -125,23 +146,23 @@ const getGlobalData = function (data) {
 // update canada data
 const getCanadaData = function (data) {
   canadaCases.innerHTML = `${numberWithCommas(data.summary[0].cumulative_cases)}
-  <span class="changes ${
-    data.summary[0].cases > 0 ? 'positive' : 'negative'
-  }">${numberWithCommas(data.summary[0].cases)}</span>
+  <span class="changes ${addArrow(
+    data.summary[0].cumulative_cases
+  )}">${numberWithCommas(data.summary[0].cases)}</span>
   `;
   canadaDeaths.innerHTML = `${numberWithCommas(
     data.summary[0].cumulative_deaths
   )}
-  <span class="changes ${
-    data.summary[0].cases > 0 ? 'positive' : 'negative'
-  }">${numberWithCommas(data.summary[0].deaths)}</span>
+  <span class="changes ${addArrow(data.summary[0].cases)}">${numberWithCommas(
+    data.summary[0].deaths
+  )}</span>
   `;
   canadaRecovered.innerHTML = `${numberWithCommas(
     data.summary[0].cumulative_recovered
   )}
-  <span class="changes ${
-    data.summary[0].recovered > 0 ? 'recovered-changes' : 'negative'
-  }">${numberWithCommas(data.summary[0].recovered)}</span>
+  <span class="changes ${addArrowRecovered(
+    data.summary[0].recovered
+  )}">${numberWithCommas(data.summary[0].recovered)}</span>
   `;
   canadaUpdate.textContent = timeCalcCanada(data);
 };
@@ -178,11 +199,9 @@ const getProvinceData = function (data) {
         <li>Cases</li>
         <li>${numberWithCommas(
           provinceData.summary[dataSetNumber].cumulative_cases
-        )} <span class="changes ${
-    provinceData.summary[dataSetNumber].cumulative_cases > 0
-      ? 'positive'
-      : 'negative'
-  }">${numberWithCommas(provinceData.summary[dataSetNumber].cases)}</span></li>
+        )} <span class="changes ${addArrow(
+    provinceData.summary[dataSetNumber].cases
+  )}">${numberWithCommas(provinceData.summary[dataSetNumber].cases)}</span></li>
       </ul>
     </div>
 
@@ -193,11 +212,9 @@ const getProvinceData = function (data) {
         <li>${numberWithCommas(
           provinceData.summary[dataSetNumber].cumulative_deaths
         )}
-        <span class="changes ${
-          provinceData.summary[dataSetNumber].cumulative_deaths > 0
-            ? 'positive'
-            : 'negative'
-        }">${numberWithCommas(
+        <span class="changes ${addArrow(
+          provinceData.summary[dataSetNumber].deaths
+        )}">${numberWithCommas(
     provinceData.summary[dataSetNumber].deaths
   )}</span>
         </li>
@@ -211,11 +228,9 @@ const getProvinceData = function (data) {
         <li>${numberWithCommas(
           provinceData.summary[dataSetNumber].cumulative_recovered
         )} 
-        <span class="changes ${
-          provinceData.summary[dataSetNumber].cumulative_recovered > 0
-            ? 'recovered-changes'
-            : 'negative'
-        }">${numberWithCommas(
+        <span class="changes ${addArrowRecovered(
+          provinceData.summary[dataSetNumber].recovered
+        )}">${numberWithCommas(
     provinceData.summary[dataSetNumber].recovered
   )}</span>
         </li>
@@ -229,7 +244,9 @@ const getProvinceData = function (data) {
         <li>vaccinated *</li>
         <li>${numberWithCommas(
           provinceData.summary[dataSetNumber].cumulative_cvaccine
-        )}<span> (${vacPercentage}%)</span></li>
+        )}
+        <span> (${vacPercentage}%)</span>
+        </li>
       </ul>
     </div>
   </div>
